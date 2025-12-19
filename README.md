@@ -4,8 +4,9 @@
 ---
 
 ## Descripción del caso
-La florería **Flores del Valle**, administrada por Doña Rosa, necesitaba un sistema que permita registrar y gestionar pedidos de arreglos florales para **cumpleaños, bodas y funerales**, reemplazando el registro manual en cuaderno.  
-El sistema evita olvidos, mantiene un historial de pedidos y permite consultar la información desde dispositivos móviles.
+La florería **Flores del Valle**, administrada por Doña Rosa, necesitaba un sistema que permita registrar y gestionar pedidos de arreglos florales para **cumpleaños, bodas y funerales**, reemplazando el registro manual en cuaderno.
+
+El sistema permite llevar un control ordenado de los pedidos, evitar olvidos, actualizar información cuando sea necesario y consultar los pedidos desde dispositivos móviles.
 
 ---
 
@@ -13,7 +14,7 @@ El sistema evita olvidos, mantiene un historial de pedidos y permite consultar l
 - ✅ Crear pedido (formulario)
 - ✅ Listar pedidos (tabla)
 - ✅ Editar pedido (formulario prellenado)
-- ✅ Cancelar pedido (eliminación controlada)
+- ✅ Eliminar pedido (eliminación permanente)
 - ✅ Gestión de estados: pendiente, armando, entregado
 - ✅ Interfaz responsive (Bootstrap, probado en vista móvil)
 
@@ -24,20 +25,17 @@ El sistema evita olvidos, mantiene un historial de pedidos y permite consultar l
 ### Estado del pedido
 - Al **crear un pedido**, el estado se asigna automáticamente como **pendiente**.
 - El usuario **no puede seleccionar el estado** al momento de la creación.
-- El estado solo puede modificarse al **editar** el pedido.
-- Un pedido en estado **entregado** se considera finalizado:
-  - No puede ser editado
-  - No puede ser cancelado
+- El estado del pedido puede modificarse posteriormente desde la opción **Editar pedido**.
 
-### Cancelación de pedidos
-- Los pedidos pueden cancelarse únicamente si se encuentran en estado **pendiente** o **armando**.
-- Los pedidos entregados se conservan como **historial**.
+### Eliminación de pedidos
+- El sistema permite la **eliminación permanente de pedidos** mediante la operación DELETE del CRUD.
+- Al eliminar un pedido, el registro se borra definitivamente de la base de datos.
 
 ### Validaciones
-- Todos los campos son obligatorios.
+- Todos los campos del formulario son **obligatorios**.
 - El número de teléfono debe contener **exactamente 10 dígitos numéricos**.
 - La fecha de entrega **no puede ser anterior a la fecha actual**.
-- Las validaciones se aplican tanto en backend como en frontend.
+- Las validaciones se aplican tanto en **backend** como en **frontend**.
 
 ---
 
@@ -82,6 +80,8 @@ La fecha del pedido se registra automáticamente mediante el campo `created_at`.
 - `resources/views/pedidos/create.blade.php`
 - `resources/views/pedidos/edit.blade.php`
 
+---
+
 ## Capturas de pantalla
 
 Las capturas de pantalla del sistema se encuentran en la carpeta `/Capturas` y evidencian el funcionamiento del CRUD de pedidos.
@@ -100,3 +100,10 @@ Las capturas de pantalla del sistema se encuentran en la carpeta `/Capturas` y e
 
 ### Eliminar pedido – Parte 2
 ![Eliminar pedido parte 2](Capturas/Eliminar%20Pedido-Parte%202.png)
+
+---
+
+## Repositorio del proyecto
+El código fuente del proyecto se encuentra disponible en el siguiente repositorio público de GitHub:
+
+🔗 https://github.com/angelitofonseca2-prog/prueba-practica-rda
