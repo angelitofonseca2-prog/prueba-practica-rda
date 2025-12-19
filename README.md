@@ -1,59 +1,85 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Examen Práctico – Desarrollo en Plataformas  
+## CASO 12 – Florería “Flores del Valle”
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+## Descripción del caso
+La florería **Flores del Valle**, administrada por Doña Rosa, necesitaba un sistema que permita registrar y gestionar pedidos de arreglos florales para **cumpleaños, bodas y funerales**, reemplazando el registro manual en cuaderno.  
+El sistema evita olvidos, mantiene un historial de pedidos y permite consultar la información desde dispositivos móviles.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Funcionalidades
+- ✅ Crear pedido (formulario)
+- ✅ Listar pedidos (tabla)
+- ✅ Editar pedido (formulario prellenado)
+- ✅ Cancelar pedido (eliminación controlada)
+- ✅ Gestión de estados: pendiente, armando, entregado
+- ✅ Interfaz responsive (Bootstrap, probado en vista móvil)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Decisiones de diseño
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Estado del pedido
+- Al **crear un pedido**, el estado se asigna automáticamente como **pendiente**.
+- El usuario **no puede seleccionar el estado** al momento de la creación.
+- El estado solo puede modificarse al **editar** el pedido.
+- Un pedido en estado **entregado** se considera finalizado:
+  - No puede ser editado
+  - No puede ser cancelado
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Cancelación de pedidos
+- Los pedidos pueden cancelarse únicamente si se encuentran en estado **pendiente** o **armando**.
+- Los pedidos entregados se conservan como **historial**.
 
-## Laravel Sponsors
+### Validaciones
+- Todos los campos son obligatorios.
+- El número de teléfono debe contener **exactamente 10 dígitos numéricos**.
+- La fecha de entrega **no puede ser anterior a la fecha actual**.
+- Las validaciones se aplican tanto en backend como en frontend.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Base de datos
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Tabla: `pedidos`
 
-## Contributing
+| Campo               | Tipo                                |
+|---------------------|-------------------------------------|
+| id                  | bigint (PK, autoincrement)          |
+| tipo_arreglo        | varchar(100)                        |
+| nombre_cliente      | varchar(100)                        |
+| telefono            | varchar(20)                         |
+| direccion_entrega   | text                                |
+| fecha_entrega       | date                                |
+| estado              | enum(pendiente, armando, entregado) |
+| created_at          | timestamp                           |
+| updated_at          | timestamp                           |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+La fecha del pedido se registra automáticamente mediante el campo `created_at`.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Tecnologías usadas
+- Laravel (framework PHP)
+- PostgreSQL (base de datos)
+- Bootstrap 5 (interfaz)
+- Git / GitHub (control de versiones)
+- Laravel Herd (entorno local)
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Estructura principal del proyecto
 
-## License
+### Archivos clave del CRUD
+- `app/Models/Pedido.php`
+- `app/Http/Controllers/PedidoController.php`
+- `routes/web.php`
+- `database/migrations/*_create_pedidos_table.php`
+- `resources/views/layouts/app.blade.php`
+- `resources/views/pedidos/index.blade.php`
+- `resources/views/pedidos/create.blade.php`
+- `resources/views/pedidos/edit.blade.php`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
