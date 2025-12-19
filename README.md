@@ -83,3 +83,13 @@ La fecha del pedido se registra automáticamente mediante el campo `created_at`.
 - `resources/views/pedidos/edit.blade.php`
 
 ---
+## Capturas de pantalla
+Las capturas de pantalla del sistema se encuentran en la carpeta `/Capturas` e incluyen evidencias del funcionamiento del CRUD:
+
+- **Lista de pedidos** (`Lista de pedidos.png`)
+- **Crear pedido** (`Crear pedido.png`)
+- **Editar pedido** (`Editar pedido.png`)
+- **Cancelar un pedido – Parte 1** (`Cancelar un pedido-Parte 1.png`)
+- **Cancelar un pedido – Parte 2** (`Cancelar un pedido-Parte 2.png`)
+
+Estas capturas muestran el registro, edición, cancelación y visualización de pedidos, así como la correcta aplicación de las reglas de negocio definidas para el sistema.
