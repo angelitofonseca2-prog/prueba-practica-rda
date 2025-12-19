@@ -101,3 +101,9 @@ Las capturas de pantalla del sistema se encuentran en la carpeta `/Capturas` y e
 ### Cancelar un pedido – Parte 2
 ![Cancelar pedido parte 2](Capturas/Cancelar%20un%20pedido-Parte%202.png)
 
+## Repositorio del proyecto
+
+El código fuente del proyecto se encuentra disponible en el siguiente repositorio público de GitHub:
+
+🔗 https://github.com/angelitofonseca2-prog/prueba-practica-rda
+
