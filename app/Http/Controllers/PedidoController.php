@@ -96,20 +96,14 @@ class PedidoController extends Controller
     }
 
     /**
-     * Cancelar pedido
+     * Eliminar pedido
      */
     public function destroy(Pedido $pedido)
     {
-        if ($pedido->estado === 'entregado') {
-            return redirect()
-                ->route('pedidos.index')
-                ->with('success', 'No se puede cancelar un pedido entregado.');
-        }
-
         $pedido->delete();
 
         return redirect()
             ->route('pedidos.index')
-            ->with('success', 'Pedido cancelado correctamente.');
+            ->with('success', 'Pedido eliminado correctamente.');
     }
 }

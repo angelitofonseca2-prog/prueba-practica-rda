@@ -40,27 +40,21 @@
                         </span>
                     </td>
                     <td class="text-center">
+                        <a href="{{ route('pedidos.edit', $pedido) }}" class="btn btn-sm btn-warning">
+                            Editar
+                        </a>
 
-                        @if($pedido->estado !== 'entregado')
-                            <a href="{{ route('pedidos.edit', $pedido) }}" class="btn btn-sm btn-warning">
-                                Editar
-                            </a>
-
-                            <form action="{{ route('pedidos.destroy', $pedido) }}"
-                                  method="POST"
-                                  class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                        class="btn btn-sm btn-danger"
-                                        onclick="return confirm('¿Desea cancelar este pedido?')">
-                                    Cancelar
-                                </button>
-                            </form>
-                        @else
-                            <span class="text-muted">Finalizado</span>
-                        @endif
-
+                        <form action="{{ route('pedidos.destroy', $pedido) }}"
+                              method="POST"
+                              class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                    class="btn btn-sm btn-danger"
+                                    onclick="return confirm('¿Desea eliminar este pedido?')">
+                                Eliminar
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @empty
