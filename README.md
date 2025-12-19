@@ -83,9 +83,3 @@ La fecha del pedido se registra automáticamente mediante el campo `created_at`.
 - `resources/views/pedidos/edit.blade.php`
 
 ---
-
-## Rutas
-Se utiliza un controlador de recursos de Laravel:
-
-```php
-Route::resource('pedidos', PedidoController::class);
