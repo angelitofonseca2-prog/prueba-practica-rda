@@ -1,28 +1,21 @@
 # Examen Práctico – Desarrollo en Plataformas  
 ## CASO 12 – Florería “Flores del Valle”
 
-### Descripción del caso
-La florería **Flores del Valle**, administrada por Doña Rosa, requiere un sistema sencillo para registrar y gestionar pedidos de arreglos florales para **cumpleaños, bodas y funerales**.  
-El sistema reemplaza el registro manual en cuaderno y permite evitar olvidos, mantener un historial de pedidos y consultar la información desde dispositivos móviles.
+---
+
+## Descripción del caso
+La florería **Flores del Valle**, administrada por Doña Rosa, necesitaba un sistema que permita registrar y gestionar pedidos de arreglos florales para **cumpleaños, bodas y funerales**, reemplazando el registro manual en cuaderno.  
+El sistema evita olvidos, mantiene un historial de pedidos y permite consultar la información desde dispositivos móviles.
 
 ---
 
-## Funcionalidades implementadas
-- Registro de pedidos con los siguientes datos:
-  - Tipo de arreglo (Cumpleaños, Boda, Funeral)
-  - Nombre del cliente
-  - Teléfono
-  - Dirección de entrega
-  - Fecha de entrega
-- Asignación automática de la **fecha de pedido** (campo `created_at`)
-- Gestión del estado del pedido:
-  - Pendiente
-  - Armando
-  - Entregado
-- Listado de pedidos ordenados por fecha de creación
-- Edición de pedidos existentes
-- Cancelación de pedidos (eliminación controlada)
-- Interfaz responsive accesible desde dispositivos móviles
+## Funcionalidades
+- ✅ Crear pedido (formulario)
+- ✅ Listar pedidos (tabla)
+- ✅ Editar pedido (formulario prellenado)
+- ✅ Cancelar pedido (eliminación controlada)
+- ✅ Gestión de estados: pendiente, armando, entregado
+- ✅ Interfaz responsive (Bootstrap, probado en vista móvil)
 
 ---
 
@@ -31,48 +24,68 @@ El sistema reemplaza el registro manual en cuaderno y permite evitar olvidos, ma
 ### Estado del pedido
 - Al **crear un pedido**, el estado se asigna automáticamente como **pendiente**.
 - El usuario **no puede seleccionar el estado** al momento de la creación.
-- El estado puede modificarse únicamente al **editar** el pedido.
-- Cuando un pedido se marca como **entregado**, se considera finalizado:
+- El estado solo puede modificarse al **editar** el pedido.
+- Un pedido en estado **entregado** se considera finalizado:
   - No puede ser editado
   - No puede ser cancelado
 
 ### Cancelación de pedidos
-- Un pedido puede ser cancelado únicamente si su estado es **pendiente** o **armando**.
-- Los pedidos **entregados no se eliminan**, con el fin de conservar el historial.
+- Los pedidos pueden cancelarse únicamente si se encuentran en estado **pendiente** o **armando**.
+- Los pedidos entregados se conservan como **historial**.
 
 ### Validaciones
-- **Todos los campos son obligatorios**.
+- Todos los campos son obligatorios.
 - El número de teléfono debe contener **exactamente 10 dígitos numéricos**.
 - La fecha de entrega **no puede ser anterior a la fecha actual**.
 - Las validaciones se aplican tanto en backend como en frontend.
 
 ---
 
-## Modelo de datos
-Tabla `pedidos`:
-- id
-- tipo_arreglo
-- nombre_cliente
-- telefono
-- direccion_entrega
-- fecha_entrega
-- estado
-- created_at
-- updated_at
+## Base de datos
+
+### Tabla: `pedidos`
+
+| Campo               | Tipo                                |
+|---------------------|-------------------------------------|
+| id                  | bigint (PK, autoincrement)          |
+| tipo_arreglo        | varchar(100)                        |
+| nombre_cliente      | varchar(100)                        |
+| telefono            | varchar(20)                         |
+| direccion_entrega   | text                                |
+| fecha_entrega       | date                                |
+| estado              | enum(pendiente, armando, entregado) |
+| created_at          | timestamp                           |
+| updated_at          | timestamp                           |
+
+La fecha del pedido se registra automáticamente mediante el campo `created_at`.
 
 ---
 
-## Tecnologías utilizadas
-- Laravel
-- Blade
-- Bootstrap 5
-- PHP
-- MySQL
+## Tecnologías usadas
+- Laravel (framework PHP)
+- PostgreSQL (base de datos)
+- Bootstrap 5 (interfaz)
+- Git / GitHub (control de versiones)
+- Laravel Herd (entorno local)
+
+---
+
+## Estructura principal del proyecto
+
+### Archivos clave del CRUD
+- `app/Models/Pedido.php`
+- `app/Http/Controllers/PedidoController.php`
+- `routes/web.php`
+- `database/migrations/*_create_pedidos_table.php`
+- `resources/views/layouts/app.blade.php`
+- `resources/views/pedidos/index.blade.php`
+- `resources/views/pedidos/create.blade.php`
+- `resources/views/pedidos/edit.blade.php`
 
 ---
 
 ## Rutas
-Se utiliza el controlador de recursos de Laravel:
+Se utiliza un controlador de recursos de Laravel:
 
 ```php
 Route::resource('pedidos', PedidoController::class);
