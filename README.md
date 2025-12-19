@@ -84,7 +84,7 @@ La fecha del pedido se registra automáticamente mediante el campo `created_at`.
 
 ## Capturas de pantalla
 
-Las capturas de pantalla del sistema se encuentran en la carpeta `/Capturas` y evidencian el funcionamiento del CRUD.
+Las capturas de pantalla del sistema se encuentran en la carpeta `/Capturas` y evidencian el funcionamiento del CRUD de pedidos.
 
 ### Lista de pedidos
 ![Lista de pedidos](Capturas/Lista%20de%20pedidos.png)
@@ -95,15 +95,8 @@ Las capturas de pantalla del sistema se encuentran en la carpeta `/Capturas` y e
 ### Editar pedido
 ![Editar pedido](Capturas/Editar%20pedido.png)
 
-### Cancelar un pedido – Parte 1
-![Cancelar pedido parte 1](Capturas/Cancelar%20un%20pedido-Parte%201.png)
+### Eliminar pedido – Parte 1
+![Eliminar pedido parte 1](Capturas/Eliminar%20Pedido-Parte%201.png)
 
-### Cancelar un pedido – Parte 2
-![Cancelar pedido parte 2](Capturas/Cancelar%20un%20pedido-Parte%202.png)
-
-## Repositorio del proyecto
-
-El código fuente del proyecto se encuentra disponible en el siguiente repositorio público de GitHub:
-
-🔗 https://github.com/angelitofonseca2-prog/prueba-practica-rda
-
+### Eliminar pedido – Parte 2
+![Eliminar pedido parte 2](Capturas/Eliminar%20Pedido-Parte%202.png)
